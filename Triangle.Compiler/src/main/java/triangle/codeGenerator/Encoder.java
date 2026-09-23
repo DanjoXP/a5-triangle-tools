@@ -37,13 +37,7 @@ import triangle.abstractSyntaxTrees.aggregates.MultipleArrayAggregate;
 import triangle.abstractSyntaxTrees.aggregates.MultipleRecordAggregate;
 import triangle.abstractSyntaxTrees.aggregates.SingleArrayAggregate;
 import triangle.abstractSyntaxTrees.aggregates.SingleRecordAggregate;
-import triangle.abstractSyntaxTrees.commands.AssignCommand;
-import triangle.abstractSyntaxTrees.commands.CallCommand;
-import triangle.abstractSyntaxTrees.commands.EmptyCommand;
-import triangle.abstractSyntaxTrees.commands.IfCommand;
-import triangle.abstractSyntaxTrees.commands.LetCommand;
-import triangle.abstractSyntaxTrees.commands.SequentialCommand;
-import triangle.abstractSyntaxTrees.commands.WhileCommand;
+import triangle.abstractSyntaxTrees.commands.*;
 import triangle.abstractSyntaxTrees.declarations.BinaryOperatorDeclaration;
 import triangle.abstractSyntaxTrees.declarations.ConstDeclaration;
 import triangle.abstractSyntaxTrees.declarations.Declaration;
@@ -470,6 +464,9 @@ public final class Encoder implements ActualParameterVisitor<Frame, Integer>,
 		return Machine.addressSize;
 	}
 
+	private void encodeFetchAddress(Vname v, Frame frame) {
+	}
+
 	@Override
 	public Integer visitEmptyActualParameterSequence(EmptyActualParameterSequence ast, Frame frame) {
 		return 0;
@@ -676,6 +673,11 @@ public final class Encoder implements ActualParameterVisitor<Frame, Integer>,
 		elaborateStdEnvironment();
 	}
 
+	@Override
+	public Void visitRepeatCommand(RepeatCommand ast, Frame frame) {
+		return null;
+	}
+
 	private Emitter emitter;
 
 	private ErrorReporter reporter;
@@ -797,10 +799,4 @@ public final class Encoder implements ActualParameterVisitor<Frame, Integer>,
 	// currentLevel is the routine level where the vname occurs.
 	// frameSize is the anticipated size of the local stack frame when
 	// the variable is addressed at run-time.
-
-	private void encodeFetchAddress(Vname V, Frame frame) {
-
-		var baseObject = (AddressableEntity) V.visit(this, frame);
-		baseObject.encodeFetchAddress(emitter, frame, V);
-	}
 }

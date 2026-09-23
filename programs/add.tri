@@ -1,0 +1,26 @@
+let
+    var i : Integer;
+    var j : Integer;
+    var k : Integer;
+    var l : Integer
+in
+    begin
+        getint(var i);
+        getint(var j);
+
+        k := i + j;
+        l := i * j;
+
+        putint(k);
+        puteol();
+
+        putint(l);
+        puteol();
+
+        if i = j then
+            begin
+                put('S'); put('a'); put('m'); put('e'); put('!');
+                puteol()
+            end
+        else
+    end
