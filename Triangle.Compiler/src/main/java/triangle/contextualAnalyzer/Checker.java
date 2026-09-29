@@ -919,6 +919,7 @@ public final class Checker implements ActualParameterVisitor<FormalParameter, Vo
 
 		StdEnvironment.integerDecl = declareStdType("Integer", StdEnvironment.integerType);
 		StdEnvironment.maxintDecl = declareStdConst("maxint", StdEnvironment.integerType);
+		StdEnvironment.barDecl = declareStdUnaryOp("|", StdEnvironment.integerType, StdEnvironment.integerType);
 		StdEnvironment.addDecl = declareStdBinaryOp("+", StdEnvironment.integerType, StdEnvironment.integerType,
 				StdEnvironment.integerType);
 		StdEnvironment.subtractDecl = declareStdBinaryOp("-", StdEnvironment.integerType, StdEnvironment.integerType,
