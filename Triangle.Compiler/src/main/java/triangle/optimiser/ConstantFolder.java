@@ -587,6 +587,20 @@ public class ConstantFolder implements ActualParameterVisitor<Void, AbstractSynt
 			
 			if (o.decl == StdEnvironment.addDecl) {
 				foldedValue = int1 + int2;
+			} else if (o.decl == StdEnvironment.subtractDecl) {
+				foldedValue = int1 - int2;
+			} else if (o.decl == StdEnvironment.multiplyDecl) {
+				foldedValue = int1 * int2;
+			} else if (o.decl == StdEnvironment.divideDecl)
+			{
+				if(int2 != 0) {
+					foldedValue = int1 / int2;
+				}
+			} else if (o.decl == StdEnvironment.moduloDecl)
+			{
+				if(int2 != 0) {
+					foldedValue = int1 / int2;
+				}
 			}
 
 			if (foldedValue instanceof Integer) {
